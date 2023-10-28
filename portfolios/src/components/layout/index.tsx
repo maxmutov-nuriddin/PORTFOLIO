@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -10,11 +10,14 @@ import useAuth from '../../store/auth';
 
 function Layout() {
   const user = useAuth((state) => state.user);
-
-  const navigate = useNavigate();
-
   const [leftSide, setLeftSide] = useState(false);
   const [rightSide, setRightSide] = useState(false);
+  const [messageDots, setMessageDots] = useState(false);
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   setMessageDots(true)
+  // })
 
   const toggleLeftSide = () => {
     setLeftSide(!leftSide);
@@ -86,10 +89,12 @@ function Layout() {
               </svg>
             </Link>
           </button>
-          <button className="account-button">
-            <svg stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1" viewBox="0 0 24 24">
-              <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
-            </svg>
+          <button className={`account-button ${messageDots ? 'account__button-dots' : ''}`}>
+            <Link to='/message' className='account-button'>
+              <svg stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1" viewBox="0 0 24 24">
+                <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
+              </svg>
+            </Link>
           </button>
           <span className="account-user">
             <Link to='/profile' className='account-user'>

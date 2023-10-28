@@ -722,7 +722,7 @@ body {
   width: 20px;
 }
 
-.account-button:not(.right-side-button)+.account-button:before {
+.account-button:not(.right-side-button)+.account__button-dots:before {
   position: absolute;
   right: 0px;
   top: -2px;
