@@ -8,6 +8,7 @@ import Portfolio from "./pages/admin/Portfolio";
 import Education from "./pages/admin/Education";
 import Skills from "./pages/admin/Skills";
 import Users from "./pages/admin/Users";
+import Experiens from "./pages/admin/Experiens";
 import Message from "./pages/admin/Message";
 
 import ProfilePage from "./pages/user/ProfilePage";
@@ -43,6 +44,7 @@ function App() {
             <Route path="/" element={<GlobalPage />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/education" element={<Education />} />
+            <Route path="/experiens" element={<Experiens />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/users" element={<Users />} />
             <Route path="/message" element={<Message />} />

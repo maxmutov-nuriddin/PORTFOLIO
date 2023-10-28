@@ -99,6 +99,7 @@ function Layout() {
             <NavLink to='/education'><i className="bi bi-backpack2"></i> Education</NavLink>
             <NavLink to='/skills'><i className="bi bi-gear"></i> Skills</NavLink>
             <NavLink to='/message'><i className="bi bi-chat-dots"></i> Message</NavLink>
+            <NavLink to='/experiens'><i className="bi bi-chevron-bar-expand"></i> Experiens</NavLink>
             <NavLink to='/users'><i className="bi bi-people"></i> Users</NavLink>
           </div>
         </div>
