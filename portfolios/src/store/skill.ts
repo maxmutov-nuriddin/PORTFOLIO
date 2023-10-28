@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
+import { FormInstance } from "antd";
 
 
 import Skill from "../types/skill";
@@ -21,14 +22,19 @@ interface SkillState {
   getSkills: () => void;
   setPage: (page: number) => void;
   controlModal: (data: boolean) => void;
+  showModal: (form: FormInstance) => void;
   setModalLoading: (data: boolean) => void;
-  // showModal: (form: FormInstance) => void;
   setUser: (user: User) => void;
   setSelected: (selected: null | string) => void;
   setSearch: (search: string) => void;
 }
 
+const userId = localStorage.getItem("PORTFOLIO_USER")
+  ? JSON.parse(localStorage.getItem("PORTFOLIO_USER") || "")
+  : null;
+
 const useSkill = create<SkillState>()(
+
   devtools(
     immer((set, get) => ({
       user: localStorage.getItem(USER)
@@ -55,14 +61,14 @@ const useSkill = create<SkillState>()(
           });
           const {
             data: { pagination, data },
-          } = await request.get("skills", {
+          } = await request.get(`skills`, {
             params: {
               page: get().page,
               limit: LIMIT,
               search: get().search,
-              user: "64dddfabdccb1b00143b2e85",
+              user: userId._id,
             },
-            
+
           });
           set((state) => {
             state.skills = data;
@@ -85,6 +91,11 @@ const useSkill = create<SkillState>()(
         set((state) => {
           state.isModalOpen = data;
         });
+      },
+      showModal: (form) => {
+        get().controlModal(true);
+        get().setSelected(null);
+        form.resetFields();
       },
       setModalLoading: (data) => {
         set((state) => {

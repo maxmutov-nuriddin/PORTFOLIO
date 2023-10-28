@@ -14,13 +14,6 @@ const request = axios.create({
 
 request.interceptors.response.use(
   (res) => {
-    toast.success('You are logged in successfully!', {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 1500,
-      hideProgressBar: true,
-    });
-    console.log(res);
-    
     return res;
   },
   (err) => {

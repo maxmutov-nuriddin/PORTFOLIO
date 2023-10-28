@@ -6,6 +6,7 @@ import Login from "../../types/login";
 import SingUp from "../../types/singup";
 
 import './login.scss'
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const login = useAuth((state) => state.login);
@@ -26,6 +27,11 @@ const LoginPage = () => {
       password: e.currentTarget.password.value,
     };
     login(user, navigate);
+    toast.success('You are logged in successfully!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1500,
+      hideProgressBar: true,
+    });
   };
 
   const singUp = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,7 +43,7 @@ const LoginPage = () => {
       password: e.currentTarget.password.value,
     };
     register(user, navigate);
-    
+
   };
 
   return (
