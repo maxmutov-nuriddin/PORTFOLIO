@@ -53,10 +53,10 @@ const LoginPage = () => {
               <input className="inputs" type="text" name="lastName" placeholder="Last Name" required />
               <input className="inputs" type="text" name="username" placeholder="User name" required />
               <input className="inputs" type={showPassword ? 'password' : 'text'} name="password" placeholder="Password" required />
-              <button className='password__show password__show-register' onClick={togglePasswordVisibility}>
+              <button className='password__show password__show-register' type="button" onClick={togglePasswordVisibility}>
                 {!showPassword ? (<i className="bi bi-eye"></i>) : (<i className="bi bi-eye-slash"></i>)}
               </button>
-              <button className="buttons">Sign up</button>
+              <button  className="buttons">Sign up</button>
             </form>
           </div>
           <div className="login">
@@ -64,7 +64,7 @@ const LoginPage = () => {
               <label className="labels" htmlFor="chk" aria-hidden="true">Login</label>
               <input className="inputs" type="text" name="username" placeholder="User name" required />
               <input className="inputs" type={showPassword ? 'password' : 'text'} name="password" placeholder="Password" required />
-              <button className='password__show password__show-login' onClick={togglePasswordVisibility}>
+              <button className='password__show password__show-login' type="button" onClick={togglePasswordVisibility}>
                 {!showPassword ? (<i className="bi bi-eye"></i>) : (<i className="bi bi-eye-slash"></i>)}
               </button>
               <button className="buttons">Login</button>
