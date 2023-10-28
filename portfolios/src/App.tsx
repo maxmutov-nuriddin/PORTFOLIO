@@ -31,7 +31,7 @@ function App() {
           <Route
             path="/"
             element={
-              isAuthenticated && user?.role === 'admin' ? (
+              isAuthenticated && user?.role === 'client' || user?.role === 'admin' ? (
                 <Layout />
               ) : isAuthenticated ? (
                 <ClientPage />

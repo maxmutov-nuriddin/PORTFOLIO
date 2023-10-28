@@ -37,6 +37,7 @@ const LoginPage = () => {
       password: e.currentTarget.password.value,
     };
     register(user, navigate);
+    
   };
 
   return (
