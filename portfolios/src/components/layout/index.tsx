@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { TOKEN } from '../../constants';
 import useAuth from '../../store/auth';
@@ -7,6 +7,7 @@ import useAuth from '../../store/auth';
 import { toast } from 'react-toastify';
 
 
+import { SearchContexts } from '../../context/Search';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import './layout.scss'
@@ -16,6 +17,8 @@ function Layout() {
   const [leftSide, setLeftSide] = useState(false);
   const [rightSide, setRightSide] = useState(false);
   const [messageDots, setMessageDots] = useState(false);
+  const { searchContext, setSearchContext } = useContext(SearchContexts)
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -106,7 +109,7 @@ function Layout() {
       </div>
       <div className="main">
         <div className="search-bar">
-          <input type="text" placeholder="Search" />
+          <input type="text" value={searchContext} onChange={(e) => setSearchContext(e.target.value)} placeholder="Search" />
           <button className="right-side-button" onClick={toggleRightSide}>
             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>

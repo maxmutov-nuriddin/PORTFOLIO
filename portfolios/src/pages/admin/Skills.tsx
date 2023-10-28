@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import request from "../../server/index";
 
 import { Form, Input, Modal } from "antd";
@@ -7,8 +7,11 @@ import Skill from "../../types/skill";
 
 import useSkill from "../../store/skill";
 import SkillsCadr from "../../components/skills/SkillsCadr";
+import { SearchContexts } from "../../context/Search";
 
 const Skills = () => {
+  const { searchContext } = useContext(SearchContexts)
+
   const pageTotal = 9
 
   const {
@@ -21,7 +24,7 @@ const Skills = () => {
     modalLoading,
     selected,
     // search,
-    // setSearch,
+    setSearch,
     getSkills,
     setPage,
     showModal,
@@ -33,6 +36,10 @@ const Skills = () => {
   useEffect(() => {
     getSkills();
   }, [getSkills, user]);
+
+  useEffect(() => {
+    setSearch(searchContext);
+  }, [searchContext]);
 
   const [form] = Form.useForm();
 
@@ -80,9 +87,14 @@ const Skills = () => {
 
   return (
     <div>
-      <button className="skills__button skills__button--add" onClick={() => showModal(form)}>
-        Add
-      </button>
+      <div className="search">
+        <div className="totals ">
+          {total}
+        </div>
+        <button className="btn btn-info" onClick={() => showModal(form)}>
+          Add
+        </button>
+      </div>
 
       <div className="user__inner">
         {
