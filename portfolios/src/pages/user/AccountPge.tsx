@@ -60,8 +60,8 @@ const AccountPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h3 className='text-center mb-5'>Account</h3>
+    <div className='form-bg'>
+      <h3 className='text-center mb-3 fw-bolder fs-1'>Account</h3>
       <form className='form-data' onSubmit={handleSubmit}>
         <div className='form-box col-5  gap-3 d-flex flex-column'>
           <div className="mb-3">

@@ -14,7 +14,6 @@ span {
 
 .form-data {
   display: flex;
-  // flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
   gap: 50px;
@@ -29,6 +28,11 @@ span {
   &::placeholder {
     color: #fff;
   }
+}
+
+.form-bg {
+  padding: 20px 0 50px;
+  background-color: #181d2f;
 }
 
 .App,
