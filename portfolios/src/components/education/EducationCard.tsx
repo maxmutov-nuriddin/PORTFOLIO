@@ -15,9 +15,8 @@ const EducationCard = ({ education, editBtn, deleteBtn }: EducationCardProps,) =
         <h3 className="user__name">Name: {education.name}</h3>
         <p className="user__text">Level: {education.level}</p>
         <p className="user__text">Description: {education.description}</p>
-        <p className="user__text">Description: {education.description}</p>
-        <p className="user__text">StartDate: {education.startDate}</p>
-        <p className="user__text">EndDate: {education.endDate}</p>
+        <p className="user__text">StartDate: {education.startDate.split('T')[0]}</p>
+        <p className="user__text">EndDate: {education.endDate.split('T')[0]}</p>
       </div>
       <span className="top"></span>
       <span className="right"></span>

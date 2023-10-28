@@ -5,8 +5,8 @@ interface Education {
   name: string;
   level: string;
   description: string;
-  startDate: number;
-  endDate: number;
+  startDate: string;
+  endDate: string;
   user: User;
   __v: number;
 }

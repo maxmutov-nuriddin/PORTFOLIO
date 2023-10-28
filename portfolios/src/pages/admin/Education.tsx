@@ -99,7 +99,7 @@ const Education = () => {
 
       <div className="user__inner">
         {
-          education.map((education) => <EducationCard key={education._id} editBtn={editBtn} deleteBtn={deleteBtn} education={education} />)
+          education.length > 0 ? (education.map((education) => <EducationCard key={education._id} editBtn={editBtn} deleteBtn={deleteBtn} education={education} />)) : (<div>Card not found</div>)
         }
       </div>
       {totalPages > 1 && (
