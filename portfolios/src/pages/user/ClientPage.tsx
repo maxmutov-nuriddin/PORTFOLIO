@@ -82,28 +82,6 @@ const ClientPage = () => {
           <button className='button-85' onClick={logout}>Logout</button>
         </div>
       </div>
-      {/* 
-      <div className="contact-links">
-        <a href="#" className="btn contact-details">
-          <i className="fab fa-instagram"></i>
-        </a>
-        <a href="#" className="btn contact-details">
-          <i className="fab fa-twitter"></i>
-        </a>
-        <a href="#" className="btn contact-details">
-          <i className="fab fa-facebook"></i>
-        </a>
-        <a href="#" className="btn contact-details">
-          <i className="fab fa-github"></i>
-        </a>
-        <a href="#" className="btn contact-details">
-          <i className="fab fa-linkedin"></i>
-        </a>
-        <a href="#" className="btn contact-details">
-          <i className="far fa-envelope"></i>
-        </a>
-      </div> */}
-
     </header>
   )
 }
