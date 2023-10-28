@@ -18,9 +18,9 @@ function Layout() {
   const [messageDots, setMessageDots] = useState(false);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   setMessageDots(true)
-  // })
+  useEffect(() => {
+    setMessageDots(true)
+  })
 
   const toggleLeftSide = () => {
     setLeftSide(!leftSide);
