@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../store/auth";
 
@@ -5,7 +6,6 @@ import Login from "../../types/login";
 import SingUp from "../../types/singup";
 
 import './login.scss'
-import { useState } from "react";
 
 const LoginPage = () => {
   const login = useAuth((state) => state.login);
@@ -26,7 +26,6 @@ const LoginPage = () => {
       password: e.currentTarget.password.value,
     };
     login(user, navigate);
-    console.log(user);
   };
 
   const singUp = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,7 +37,6 @@ const LoginPage = () => {
       password: e.currentTarget.password.value,
     };
     register(user, navigate);
-    console.log(user);
   };
 
   return (
@@ -56,7 +54,7 @@ const LoginPage = () => {
               <button className='password__show password__show-register' type="button" onClick={togglePasswordVisibility}>
                 {!showPassword ? (<i className="bi bi-eye"></i>) : (<i className="bi bi-eye-slash"></i>)}
               </button>
-              <button  className="buttons">Sign up</button>
+              <button className="buttons">Sign up</button>
             </form>
           </div>
           <div className="login">

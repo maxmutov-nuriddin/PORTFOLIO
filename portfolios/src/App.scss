@@ -976,3 +976,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.1);
 }
+
+.btn-success,
+.btn-warning {
+  width: 52px;
+  height: 34px;
+}

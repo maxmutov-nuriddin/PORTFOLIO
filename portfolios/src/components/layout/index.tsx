@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import { TOKEN } from '../../constants';
+import useAuth from '../../store/auth';
+
+import { toast } from 'react-toastify';
+
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import './layout.scss'
-import Cookies from 'js-cookie';
-import { TOKEN } from '../../constants';
-import useAuth from '../../store/auth';
 
 function Layout() {
   const user = useAuth((state) => state.user);
@@ -28,12 +31,47 @@ function Layout() {
   };
 
   const logout = () => {
-    const confirmDelete = window.confirm("Are you Logout?");
-    if (confirmDelete) {
+    const handleLogoutConfirmation = () => {
       Cookies.remove(TOKEN);
-      navigate("/login");
-    }
+      toast.success('You have been logged out!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1500,
+        hideProgressBar: true,
+        onClose: () => navigate('/login'),
+      });
+    };
+    const handleNotLogoutConfirmation = () => {
+      toast.success('You canceled the logout!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+    };
+    
 
+    const handleLogout = () => {
+      toast.dismiss();
+      handleLogoutConfirmation();
+    };
+
+    const handleCancelLogout = () => {
+      toast.dismiss();
+      handleNotLogoutConfirmation()
+    };
+
+    toast.info(
+      <div>
+        <p>Are you Logout?</p>
+        <button type="button" className="btn btn-success me-2" onClick={handleLogout}>Yes</button>
+        <button type="button" className="btn btn-warning" onClick={handleCancelLogout}>No</button>
+      </div>,
+      {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: false,
+        hideProgressBar: true,
+        closeButton: false,
+      }
+    );
   };
 
   return (

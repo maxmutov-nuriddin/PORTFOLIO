@@ -13,10 +13,22 @@ const request = axios.create({
 });
 
 request.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    toast.success('You are logged in successfully!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1500,
+      hideProgressBar: true,
+    });
+    console.log(res);
+    
+    return res;
+  },
   (err) => {
-    toast.error(err.response.data.message);
-    // alert(err.response.data.message);
+    if (err.response && err.response.data && err.response.data.message) {
+      toast.error(err.response.data.message);
+    } else {
+      toast.error('An error occurred.');
+    }
     return Promise.reject(err);
   }
 );
