@@ -105,13 +105,13 @@ body {
 }
 
 .password__show-register {
-  top: 292px;
-  left: 340px;
+  top: 290px;
+  left: 337px;
 }
 
 .password__show-login {
   top: 176px;
-  left: 340px;
+  left: 337px;
 }
 
 .bi-eye,
@@ -132,9 +132,9 @@ body {
   transform: translate(-50%, -50%);
   position: relative;
   z-index: 0;
-  width: 474px;
+  width: 100%;
+  max-width: 474px;
   height: 550px;
-  margin: 20px;
   border-radius: 10px;
   overflow: hidden;
   padding: 2rem;
@@ -178,5 +178,13 @@ body {
 
   100% {
     opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+
+  .inputs,
+  .buttons {
+    width: 60%;
   }
 }
