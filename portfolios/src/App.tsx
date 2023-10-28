@@ -1,7 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import GlobalPage from './pages/GlobalPage'
 
-import './App.scss'
 
 import Layout from "./components/layout";
 
@@ -19,6 +18,7 @@ import AccountPge from "./pages/user/AccountPge";
 import NoutFound from "./pages/public/NoutFound";
 import ClientPage from "./pages/user/ClientPage";
 
+import './App.scss'
 
 function App() {
   const isAuthenticated = useAuth((state) => state.isAuthenticated);
