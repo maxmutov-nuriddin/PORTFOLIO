@@ -16,7 +16,7 @@
 
 .user__inner {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   grid-gap: 20px;
 }
@@ -25,6 +25,12 @@
   margin-top: 50px;
 }
 
+.totals{
+  color: #2075e4;
+  padding: 8px 13px;
+  background-color: #fff;
+  border-radius: 50%;font-weight: 700;
+}
 
 .card {
   position: relative;
@@ -197,4 +203,38 @@
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+}
+
+.search {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 80px;
+}
+
+
+.form-control {
+  height: 100%;
+  width: 100%;
+  display: block;
+  background-color: transparent;
+  border: none;
+  padding: 0 54px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3e%3cpath d='M508.9 478.7L360 330a201.6 201.6 0 0045.2-127.3C405.3 90.9 314.4 0 202.7 0S0 91 0 202.7s91 202.6 202.7 202.6c48.2 0 92.4-17 127.3-45.2L478.7 509c4.2 4.1 11 4.1 15 0l15.2-15.1c4.1-4.2 4.1-11 0-15zm-306.2-116c-88.3 0-160-71.8-160-160s71.7-160 160-160 160 71.7 160 160-71.8 160-160 160z' data-original='%23000000' class='active-path' data-old_color='%23000000' fill='%235C5D71'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 25px 50%;
+  color: #fff;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 545px) {
+  .search {
+    gap: 0;
+  }
+
+  .card {
+    width: 190px;
+    height: 190px;
+  }
 }
