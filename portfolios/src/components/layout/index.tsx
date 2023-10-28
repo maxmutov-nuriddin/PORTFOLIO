@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { TOKEN } from '../../constants';
@@ -91,12 +91,12 @@ function Layout() {
         <div className="side-wrapper">
           <div className="side-title">MENU</div>
           <div className="side-menu">
-            <Link to='/'><i className="bi bi-house-door"></i>Home</Link>
-            <Link to='/portfolio'><i className="bi bi-briefcase"></i> Portfolio</Link>
-            <Link to='/education'><i className="bi bi-backpack2"></i> Education</Link>
-            <Link to='/skills'><i className="bi bi-gear"></i> Skills</Link>
-            <Link to='/message'><i className="bi bi-chat-dots"></i> Message</Link>
-            <Link to='/users'><i className="bi bi-people"></i> Users</Link>
+            <NavLink to='/'><i className="bi bi-house-door"></i>Home</NavLink>
+            <NavLink to='/portfolio'><i className="bi bi-briefcase"></i> Portfolio</NavLink>
+            <NavLink to='/education'><i className="bi bi-backpack2"></i> Education</NavLink>
+            <NavLink to='/skills'><i className="bi bi-gear"></i> Skills</NavLink>
+            <NavLink to='/message'><i className="bi bi-chat-dots"></i> Message</NavLink>
+            <NavLink to='/users'><i className="bi bi-people"></i> Users</NavLink>
           </div>
         </div>
         <a href="https://instagram.com/mv.nuriddin?igshid=OGQ5ZDc2ODk2ZA==" className="follow-me" target="blank">
@@ -120,33 +120,33 @@ function Layout() {
       <div className={`right-side ${rightSide ? 'active' : ''}`}>
         <div className="account">
           <button className="account-button">
-            <Link to='/message' className='account-button'>
+            <NavLink to='/message' className='account-button'>
               <svg stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1" viewBox="0 0 24 24">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <path d="M22 6l-10 7L2 6" />
               </svg>
-            </Link>
+            </NavLink>
           </button>
           <button className={`account-button ${messageDots ? 'account__button-dots' : ''}`}>
-            <Link to='/message' className='account-button'>
+            <NavLink to='/message' className='account-button'>
               <svg stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1" viewBox="0 0 24 24">
                 <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
               </svg>
-            </Link>
+            </NavLink>
           </button>
           <span className="account-user">
-            <Link to='/profile' className='account-user'>
+            <NavLink to='/profile' className='account-user'>
               {user?.username}
               <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" alt="" className="account-profile" />
-            </Link>
+            </NavLink>
           </span>
         </div>
         <div className="side-wrapper">
           <div className="side-title">Settings</div>
           <div className="side-menu">
-            <Link to='/profile'><i className="bi bi-person-circle"></i> Profile</Link>
-            <Link to='/account'><i className="bi bi-person-gear"></i> Account</Link>
-            <Link to='/setting'><i className="bi bi-gear"></i> Setting</Link>
+            <NavLink to='/profile'><i className="bi bi-person-circle"></i> Profile</NavLink>
+            <NavLink to='/account'><i className="bi bi-person-gear"></i> Account</NavLink>
+            <NavLink to='/setting'><i className="bi bi-gear"></i> Setting</NavLink>
             <hr />
             <a onClick={logout}><i className="bi bi-box-arrow-in-left"></i> Logout</a>
           </div>
