@@ -84,7 +84,6 @@ const Portfolios = () => {
 
   const editBtn = async (id: string) => {
     const { data } = await request.get(`portfolios/${id}`);
-    console.log(data);
 
     form.setFieldsValue(data);
     controlModal(true);
