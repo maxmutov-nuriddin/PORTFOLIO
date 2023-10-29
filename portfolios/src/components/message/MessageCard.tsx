@@ -31,7 +31,7 @@ const MessageCard = ({ message, editBtn, deleteBtn }: MessageCardProps,) => {
             <button className="btn btn-info" onClick={() => editBtn(message._id)}>Edit</button>
             <button className="btn btn-danger" onClick={() => deleteBtn(message._id)}>Delete</button>
           </div>
-        ) : 'null'
+        ) : null
       }
     </div>
   )
