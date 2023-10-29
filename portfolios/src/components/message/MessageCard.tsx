@@ -14,7 +14,7 @@ const MessageCard = ({ message, editBtn, deleteBtn }: MessageCardProps,) => {
       <div className="user__box">
         <h3 className="user__name">Name: {message.title}</h3>
         <p className="user__text">Description: {message.message}</p>
-        <p className="user__text">Description: {message.whom.firstName}</p>
+        <p className="user__text">Description: {message.whom === null ? 'Anonim' : message.whom.firstName }</p>
         <p className="user__text">Description: {message.user}</p>
       </div>
       <span className="top"></span>

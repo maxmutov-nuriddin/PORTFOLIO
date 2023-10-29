@@ -7,6 +7,7 @@ import useExpiriens from '../store/expiriens';
 import usePortfolio from '../store/portfolio';
 import useSkill from '../store/skill';
 import useMessage from '../store/message';
+import useUsers from '../store/user';
 
 const GlobalPage = () => {
   const user = useAuth((state) => state.user);
@@ -15,6 +16,8 @@ const GlobalPage = () => {
   const { total: expiriensTotal, getExpiriens } = useExpiriens();
   const { total: portfolioTotal, getPortfolio } = usePortfolio();
   const { total: messages, getMessage } = useMessage();
+  const { total: users, getUser } = useUsers();
+
   const { total: skillsTotal, getSkills } = useSkill();
 
   useEffect(() => {
@@ -26,7 +29,8 @@ const GlobalPage = () => {
     getPortfolio()
     getSkills()
     getMessage()
-  }, [educationTotal, expiriensTotal, portfolioTotal, skillsTotal, getMessage]);
+    getUser()
+  }, [educationTotal, expiriensTotal, portfolioTotal, skillsTotal, messages, users]);
 
   if (loading) {
     return <div className='loading'>
@@ -123,7 +127,7 @@ const GlobalPage = () => {
               </div>
               <div className="info">
                 <Space wrap>
-                  <Progress type="dashboard" percent={0} format={percent => (
+                  <Progress type="dashboard" percent={users} format={percent => (
                     <span style={{ color: '#fff' }}>{percent}%</span>
                   )}
                   />
