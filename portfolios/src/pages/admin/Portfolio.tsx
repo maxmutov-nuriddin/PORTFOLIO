@@ -60,14 +60,12 @@ const Portfolios = () => {
 
         const response = await request.post("/upload", formData);
         values.photo = response.data;
-        console.log(response);
 
         if (selected === null) {
           await request.post("portfolios", values);
         } else {
           await request.put(`portfolios/${selected}`, values);
         }
-
         if (selected) {
           await request.put(`portfolios/${selected}`, values);
         }

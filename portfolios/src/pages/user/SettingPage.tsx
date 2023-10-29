@@ -8,7 +8,7 @@ import './password.scss'
 
 const SettingPage = () => {
   const [showPassword, setShowPassword] = useState(true);
-  const paswword = useAuth((state) => state.password);
+  const password = useAuth((state) => state.password);
 
 
   const togglePasswordVisibility = () => {
@@ -20,8 +20,11 @@ const SettingPage = () => {
     const user: Password = {
       username: e.currentTarget.username.value,
       password: e.currentTarget.password.value,
+      passwordCurrent: e.currentTarget.passwordCurrent.value,
     };
-    paswword(user);
+    console.log(user);
+    
+    password(user);
     toast.success('You are logged in successfully!', {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 1500,
@@ -37,7 +40,7 @@ const SettingPage = () => {
           <label className="labels" htmlFor="chk" aria-hidden="true">Change Password</label>
           <input className="inputs" type="text" name="username" placeholder="User name" required />
           <input className="inputs" type={showPassword ? 'password' : 'text'} name="password" placeholder="Password" required />
-          <input className="inputs" type={showPassword ? 'password' : 'text'} name="password" placeholder="Password" required />
+          <input className="inputs" type={showPassword ? 'password' : 'text'} name="passwordCurrent" placeholder="Password" required />
           <div className=" d-flex align-items-center flex-column">
             <button className='password__shows password__show-password' type="button" onClick={togglePasswordVisibility}>
               {!showPassword ? (<i className="bi bi-eye bi-color"></i>) : (<i className="bi bi-eye-slash"></i>)}
