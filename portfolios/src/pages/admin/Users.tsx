@@ -62,9 +62,6 @@ const Users = () => {
         const formData = new FormData();
         formData.append("file", selectedFile);
 
-        // console.log(mySelectedFile);
-        
-
         const response = await request.post("/upload", formData);
         values.photo = response.data;
 
