@@ -5,8 +5,9 @@ import useAuth from "../../store/auth";
 import Login from "../../types/login";
 import SingUp from "../../types/singup";
 
-import './login.scss'
 import { toast } from "react-toastify";
+
+import './login.scss'
 
 const LoginPage = () => {
   const login = useAuth((state) => state.login);
