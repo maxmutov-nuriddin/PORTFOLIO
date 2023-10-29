@@ -7,6 +7,7 @@ import request from "../server";
 import User from "../types/user";
 import Login from "../types/login";
 import SingUp from "../types/singup";
+import Password from "../types/password";
 
 import { TOKEN, USER } from "../constants";
 
@@ -15,6 +16,7 @@ interface AuthState {
   user: null | User;
   login: (values: Login, navigate: NavigateFunction) => void;
   register: (values: SingUp, navigate: NavigateFunction) => void;
+  password: (values: Password) => void;
 }
 
 const useAuth = create<AuthState>()(
@@ -41,6 +43,14 @@ const useAuth = create<AuthState>()(
       localStorage.setItem(USER, JSON.stringify(user));
       set((state) => ({ ...state, isAuthenticated: true, user }));
       navigate("/login");
+    },
+    password: async (values) => {
+      const {
+        data: { token, user },
+      } = await request.post("auth/updatepassword", values);
+      Cookies.set(TOKEN, token);
+      localStorage.setItem(USER, JSON.stringify(user));
+      set((state) => ({ ...state, user }));
     },
   }))
 );
