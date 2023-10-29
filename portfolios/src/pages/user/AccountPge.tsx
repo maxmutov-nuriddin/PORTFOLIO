@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './accountPage.scss';
-import axios from 'axios';
+import request from '../../server';
+import useAccount from '../../store/account';
 
-const AccountPage: React.FC = () => {
+
+const AccountPage = () => {
+  const {
+    formDatas,
+    loading,
+    getAccount,
+  } = useAccount();
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -21,18 +29,19 @@ const AccountPage: React.FC = () => {
 
   useEffect(() => {
     getAccount();
-    handleChange
   }, []);
 
-  const getAccount = async () => {
-    try {
-      const response = await axios.get('auth/me');
-      const accountData = response.data;
-      setFormData(accountData);
-    } catch (error) {
-      console.log(error);
-    }
+  useEffect(() => {
+    updateFormData();
+  }, [formDatas]);
+
+  const updateFormData = () => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      ...formDatas,
+    }));
   };
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -42,12 +51,23 @@ const AccountPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.put('auth/updatedetails', formData);
+      await request.put('auth/updatedetails', formData);
       setFormData((prevFormData) => ({ ...prevFormData, success: true }));
     } catch (error) {
       console.log(error);
     }
   };
+
+  if (loading) {
+    return <div className='loading'>
+      <div className="loading-wave">
+        <div className="loading-bar"></div>
+        <div className="loading-bar"></div>
+        <div className="loading-bar"></div>
+        <div className="loading-bar"></div>
+      </div>
+    </div>
+  }
 
   return (
     <div className='form-bg'>
@@ -168,7 +188,7 @@ const AccountPage: React.FC = () => {
           <div className="mb-3">
             <label>Phone Number</label>
             <input
-              type="number"
+              type="text"
               className="form-control"
               placeholder="Enter phone number"
               name="phoneNumber"
