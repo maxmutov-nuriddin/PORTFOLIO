@@ -6,7 +6,6 @@ import { SearchContexts } from "../../context/Search";
 import usePortfolio from "../../store/portfolio";
 import PortfolioCard from "../../components/portfolioCard/PortfolioCard";
 
-
 const Portfolios = () => {
   const { searchContext } = useContext(SearchContexts);
   const pageTotal = 9;
