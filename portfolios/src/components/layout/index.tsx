@@ -11,18 +11,23 @@ import { SearchContexts } from '../../context/Search';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import './layout.scss'
+import useMessage from '../../store/message';
 
 function Layout() {
   const user = useAuth((state) => state.user);
   const [leftSide, setLeftSide] = useState(false);
   const [rightSide, setRightSide] = useState(false);
   const [messageDots, setMessageDots] = useState(false);
+  const { total } = useMessage();
   const { searchContext, setSearchContext } = useContext(SearchContexts)
 
   const navigate = useNavigate();
 
+  // console.log(user);
+
+
   useEffect(() => {
-    setMessageDots(true)
+    setMessageDots(total > 0)
   })
 
   const toggleLeftSide = () => {
@@ -77,8 +82,6 @@ function Layout() {
     );
   };
 
-  // console.log(user);
-  
 
   return (
     <div className="container">
@@ -103,7 +106,9 @@ function Layout() {
             <NavLink to='/skills'><i className="bi bi-gear"></i> Skills</NavLink>
             <NavLink to='/message'><i className="bi bi-chat-dots"></i> Message</NavLink>
             <NavLink to='/experiens'><i className="bi bi-chevron-bar-expand"></i> Experiens</NavLink>
-            <NavLink to='/users'><i className="bi bi-people"></i> Users</NavLink>
+            {
+              user?.role === 'admin' ? (<NavLink to='/users'><i className="bi bi-people"></i> Users</NavLink>) : ''
+            }
           </div>
         </div>
         <a href="https://instagram.com/mv.nuriddin?igshid=OGQ5ZDc2ODk2ZA==" className="follow-me" target="blank">

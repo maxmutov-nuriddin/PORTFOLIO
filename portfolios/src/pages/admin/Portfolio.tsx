@@ -118,14 +118,15 @@ const Portfolios = () => {
       </div>
 
       <div className="user__inner">
-        {portfolio.map((portfolio) => (
+        {portfolio.length > 0 ? (portfolio.map((portfolio) => (
           <PortfolioCard
             key={portfolio._id}
             editBtn={editBtn}
             deleteBtn={deleteBtn}
             portfolio={portfolio}
           />
-        ))}
+        ))) : (<div>Card not found</div>)
+        }
       </div>
       {totalPages > 1 && (
         <div className="skills__pagination">

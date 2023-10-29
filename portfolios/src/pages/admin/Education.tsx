@@ -34,6 +34,7 @@ const Education = () => {
     setSearch,
   } = useEducation();
 
+
   useEffect(() => {
     getEducation();
   }, [getEducation, user]);

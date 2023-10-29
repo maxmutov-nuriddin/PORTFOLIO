@@ -59,17 +59,27 @@ const useExpiriens = create<ExpiriensState>()(
           set((state) => {
             state.loading = true;
           });
+
+          interface Params {
+            page: number;
+            limit: number;
+            search: string;
+            user?: string;
+          }
+
+          const params: Params = {
+            page: get().page,
+            limit: LIMIT,
+            search: get().search,
+          };
+
+          if (userId.role !== "admin") {
+            params.user = userId._id;
+          }
+
           const {
             data: { pagination, data },
-          } = await request.get(`experiences`, {
-            params: {
-              page: get().page,
-              limit: LIMIT,
-              search: get().search,
-              user: userId._id,
-            },
-
-          });
+          } = await request.get(`experiences`, { params });
           set((state) => {
             state.expiriens = data;
             state.total = pagination.total;

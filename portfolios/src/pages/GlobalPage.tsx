@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Progress, Space } from 'antd';
 
+import useAuth from '../store/auth';
 import useEducation from '../store/education';
 import useExpiriens from '../store/expiriens';
 import usePortfolio from '../store/portfolio';
 import useSkill from '../store/skill';
+import useMessage from '../store/message';
 
 const GlobalPage = () => {
+  const user = useAuth((state) => state.user);
   const [loading, setLoading] = useState(true);
   const { total: educationTotal, getEducation } = useEducation();
   const { total: expiriensTotal, getExpiriens } = useExpiriens();
   const { total: portfolioTotal, getPortfolio } = usePortfolio();
+  const { total: messages, getMessage } = useMessage();
   const { total: skillsTotal, getSkills } = useSkill();
 
   useEffect(() => {
@@ -21,7 +25,8 @@ const GlobalPage = () => {
     getExpiriens()
     getPortfolio()
     getSkills()
-  }, [educationTotal, expiriensTotal, portfolioTotal, skillsTotal]);
+    getMessage()
+  }, [educationTotal, expiriensTotal, portfolioTotal, skillsTotal, getMessage]);
 
   if (loading) {
     return <div className='loading'>
@@ -88,7 +93,7 @@ const GlobalPage = () => {
           </div>
           <div className="info">
             <Space wrap>
-              <Progress type="dashboard" percent={0} format={percent => (
+              <Progress type="dashboard" percent={messages} format={percent => (
                 <span style={{ color: '#fff' }}>{percent}%</span>
               )}
               />
@@ -109,20 +114,24 @@ const GlobalPage = () => {
             </Space>
           </div>
         </div>
-        <div className="album box">
-          <div className="intro-title">
-            User
-            <button className="intro-menu"></button>
-          </div>
-          <div className="info">
-            <Space wrap>
-              <Progress type="dashboard" percent={0} format={percent => (
-                <span style={{ color: '#fff' }}>{percent}%</span>
-              )}
-              />
-            </Space>
-          </div>
-        </div>
+        {
+          user?.role === 'admin' ? (
+            <div className="album box">
+              <div className="intro-title">
+                User
+                <button className="intro-menu"></button>
+              </div>
+              <div className="info">
+                <Space wrap>
+                  <Progress type="dashboard" percent={0} format={percent => (
+                    <span style={{ color: '#fff' }}>{percent}%</span>
+                  )}
+                  />
+                </Space>
+              </div>
+            </div>
+          ) : null
+        }
       </div>
     </div>
   )

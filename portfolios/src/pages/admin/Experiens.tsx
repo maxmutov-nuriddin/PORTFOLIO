@@ -99,7 +99,7 @@ const Skills = () => {
 
       <div className="user__inner">
         {
-          expiriens.map((expiriens) => <ExpiriensCard key={expiriens._id} editBtn={editBtn} deleteBtn={deleteBtn} expiriens={expiriens} />)
+          expiriens.length > 0 ?  (expiriens.map((expiriens) => <ExpiriensCard key={expiriens._id} editBtn={editBtn} deleteBtn={deleteBtn} expiriens={expiriens} />)) : (<div>Card not found</div>)
         }
       </div>
       {totalPages > 1 && (

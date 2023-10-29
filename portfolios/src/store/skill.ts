@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
@@ -54,22 +55,34 @@ const useSkill = create<SkillState>()(
         });
         get().getSkills();
       },
+
       getSkills: async () => {
         try {
           set((state) => {
             state.loading = true;
           });
+
+          interface Params {
+            page: number;
+            limit: number;
+            search: string;
+            user?: string;
+          }
+
+          const params: Params = {
+            page: get().page,
+            limit: LIMIT,
+            search: get().search,
+          };
+
+          if (userId.role !== "admin") {
+            params.user = userId._id;
+          }
+
           const {
             data: { pagination, data },
-          } = await request.get(`skills`, {
-            params: {
-              page: get().page,
-              limit: LIMIT,
-              search: get().search,
-              user: userId._id,
-            },
+          } = await request.get(`skills`, { params });
 
-          });
           set((state) => {
             state.skills = data;
             state.total = pagination.total;

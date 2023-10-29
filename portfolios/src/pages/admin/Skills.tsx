@@ -33,6 +33,7 @@ const Skills = () => {
     setModalLoading,
   } = useSkill();
 
+
   useEffect(() => {
     getSkills();
   }, [getSkills, user]);
@@ -98,7 +99,7 @@ const Skills = () => {
 
       <div className="user__inner">
         {
-          skills.map((skill) => <SkillsCadr key={skill._id} editBtn={editBtn} deleteBtn={deleteBtn} skills={skill} />)
+          skills.length > 0 ?  (skills.map((skill) => <SkillsCadr key={skill._id} editBtn={editBtn} deleteBtn={deleteBtn} skills={skill} />)) : (<div>Card not found</div>)
         }
       </div>
       {totalPages > 1 && (
