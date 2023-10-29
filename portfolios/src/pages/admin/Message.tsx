@@ -98,9 +98,13 @@ const Messages = () => {
         <div className="totals ">
           {total}
         </div>
-        <button className="btn btn-info" onClick={() => showModal(form)}>
-          Add
-        </button>
+        {
+          users?.role === "admin" ? '' : (
+            <button className="btn btn-info" onClick={() => showModal(form)}>
+              Add
+            </button>
+          )
+        }
       </div>
 
       <div className="user__inner">

@@ -28,7 +28,7 @@ const MessageCard = ({ message, editBtn, deleteBtn }: MessageCardProps,) => {
       {
         user?.role === 'admin' ? (
           <div className="all__btn">
-            <button className="btn btn-info" onClick={() => editBtn(message._id)}>Edit</button>
+            <button className="btn btn-info" onClick={() => editBtn(message._id)}>{user?.role === 'admin' ? 'Answer' : 'Edit'}</button>
             <button className="btn btn-danger" onClick={() => deleteBtn(message._id)}>Delete</button>
           </div>
         ) : null

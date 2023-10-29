@@ -35,8 +35,6 @@ const AccountPage = () => {
     updateFormData();
   }, [formDatas]);
 
-  console.log(formDatas);
-  
 
   const updateFormData = () => {
     setFormData((prevFormData) => ({

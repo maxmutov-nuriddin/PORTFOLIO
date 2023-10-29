@@ -1,7 +1,7 @@
 interface Password {
   username: string;
-  password: string;
-  passwordCurrent: string;
+  currentPassword: string;
+  newPassword: string;
 }
 
 export default Password;

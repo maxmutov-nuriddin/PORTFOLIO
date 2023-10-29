@@ -47,7 +47,7 @@ const useAuth = create<AuthState>()(
     password: async (values) => {
       const {
         data: { token, user },
-      } = await request.post("auth/updatepassword", values);
+      } = await request.put("auth/updatepassword", values);
       Cookies.set(TOKEN, token);
       localStorage.setItem(USER, JSON.stringify(user));
       set((state) => ({ ...state, user }));

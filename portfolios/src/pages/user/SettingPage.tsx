@@ -19,8 +19,8 @@ const SettingPage = () => {
     e.preventDefault();
     const user: Password = {
       username: e.currentTarget.username.value,
-      password: e.currentTarget.password.value,
-      passwordCurrent: e.currentTarget.passwordCurrent.value,
+      currentPassword: e.currentTarget.currentPassword.value,
+      newPassword: e.currentTarget.newPassword.value,
     };
     console.log(user);
     
@@ -39,8 +39,8 @@ const SettingPage = () => {
         <form onSubmit={logIn}>
           <label className="labels" htmlFor="chk" aria-hidden="true">Change Password</label>
           <input className="inputs" type="text" name="username" placeholder="User name" required />
-          <input className="inputs" type={showPassword ? 'password' : 'text'} name="password" placeholder="Password" required />
-          <input className="inputs" type={showPassword ? 'password' : 'text'} name="passwordCurrent" placeholder="Password" required />
+          <input className="inputs" type={showPassword ? 'password' : 'text'} name="currentPassword" placeholder="Password" required />
+          <input className="inputs" type={showPassword ? 'password' : 'text'} name="newPassword" placeholder="Password" required />
           <div className=" d-flex align-items-center flex-column">
             <button className='password__shows password__show-password' type="button" onClick={togglePasswordVisibility}>
               {!showPassword ? (<i className="bi bi-eye bi-color"></i>) : (<i className="bi bi-eye-slash"></i>)}

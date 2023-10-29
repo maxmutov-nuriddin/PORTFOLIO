@@ -11,9 +11,6 @@ import '../skills/skillsCard.scss'
 
 const PortfolioCard = ({ portfolio, editBtn, deleteBtn }: SkillsCardProps,) => {
 
-  console.log(portfolio);
-  
-
   return (
     <div className="card">
       <div className="user__box text-center">
