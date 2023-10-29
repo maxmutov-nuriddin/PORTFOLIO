@@ -239,21 +239,6 @@ const Users = () => {
             <Input />
           </Form.Item>
 
-{/* 
-          <Form.Item<User>
-            label="Сlient"
-            name="client"
-            rules={[
-              {
-                required: true,
-                message: "Please fill!",
-              },
-            ]}
-          >
-            <Checkbox>Checkbox</Checkbox>;
-          </Form.Item> */}
-
-
           <Form.Item label="File">
             <input type="file" onChange={handleFileChange} value={mySelectedFile ? mySelectedFile.name : ""} />
           </Form.Item>

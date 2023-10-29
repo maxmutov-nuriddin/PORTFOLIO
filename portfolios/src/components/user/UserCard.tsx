@@ -10,6 +10,8 @@ interface SkillsCardProps {
 
 const UserCard = ({ users, editBtn, deleteBtn }: SkillsCardProps,) => {
 
+  
+
 
 
   return (
