@@ -3,6 +3,7 @@ interface User {
   fields: string[];
   client: boolean;
   _id: string;
+  photo: string;
   firstName: string;
   lastName: string;
   username: string;

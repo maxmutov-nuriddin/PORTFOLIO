@@ -50,7 +50,7 @@ function Layout() {
         hideProgressBar: true,
       });
     };
-    
+
 
     const handleLogout = () => {
       toast.dismiss();
@@ -138,10 +138,19 @@ function Layout() {
               </svg>
             </NavLink>
           </button>
-          <span className="account-user">
+          <span className="account-user side-menu">
             <NavLink to='/profile' className='account-user'>
               {user?.username}
-              <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" alt="" className="account-profile" />
+              <img
+                src={user?.photo || user?.photo === '' ? user?.photo : './public/image-from-rawpixel-id-3012279-svg.svg'}
+                alt=""
+                className="account-profile"
+              />
+              {/* <img
+                src={user?.fields?.length !== undefined && user.fields ? './public/image-from-rawpixel-id-3012279-svg.svg' : `https://ap-portfolio-backend.up.railway.app/api/v1/upload/${user.fields._id}.${user.fields.name?.split(".")[1]}`}
+                alt=""
+                className="account-profile"
+              /> */}
             </NavLink>
           </span>
         </div>
