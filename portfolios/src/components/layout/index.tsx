@@ -142,7 +142,7 @@ function Layout() {
             <NavLink to='/profile' className='account-user'>
               {user?.username}
               <img
-                src={user?.photo || user?.photo === '' ? user?.photo : './public/image-from-rawpixel-id-3012279-svg.svg'}
+                src={user?.photo || user?.photo !== '' ? user?.photo : './public/image-from-rawpixel-id-3012279-svg.svg'}
                 alt=""
                 className="account-profile"
               />

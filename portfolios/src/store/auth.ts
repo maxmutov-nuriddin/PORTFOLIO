@@ -31,6 +31,7 @@ const useAuth = create<AuthState>()(
       localStorage.setItem(USER, JSON.stringify(user));
       set((state) => ({ ...state, isAuthenticated: true, user }));
       navigate("/");
+      location.reload();
     },
     register: async (values, navigate) => {
       const {
