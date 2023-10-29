@@ -38,7 +38,7 @@ function Layout() {
       Cookies.remove(TOKEN);
       toast.success('You have been logged out!', {
         position: toast.POSITION.TOP_RIGHT,
-        autoClose: 1500,
+        autoClose: 1000,
         hideProgressBar: true,
         onClose: () => navigate('/login'),
       });
