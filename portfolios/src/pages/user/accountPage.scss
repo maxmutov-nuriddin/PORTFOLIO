@@ -26,7 +26,8 @@ span {
   background-image: none;
 
   &::placeholder {
-    color: #fff;
+    color: #c6c0c0;
+    opacity: 0.6;
   }
 }
 
