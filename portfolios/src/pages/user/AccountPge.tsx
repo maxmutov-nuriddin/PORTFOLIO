@@ -1,24 +1,9 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import './accountPage.scss';
-
-interface FormData {
-  firstName: string;
-  lastName: string;
-  username: string;
-  address: string;
-  birthday: string;
-  email: string;
-  facebook: string;
-  github: string;
-  info: string;
-  instagram: string;
-  phoneNumber: string;
-  telegram: string;
-  youtube: string;
-}
+import axios from 'axios';
 
 const AccountPage: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     username: '',
@@ -34,29 +19,34 @@ const AccountPage: React.FC = () => {
     youtube: '',
   });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  useEffect(() => {
+    getAccount();
+    handleChange
+  }, []);
+
+  const getAccount = async () => {
+    try {
+      const response = await axios.get('auth/me');
+      const accountData = response.data;
+      setFormData(accountData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
-    setFormData({
-      firstName: '',
-      lastName: '',
-      username: '',
-      address: '',
-      birthday: '',
-      email: '',
-      facebook: '',
-      github: '',
-      info: '',
-      instagram: '',
-      phoneNumber: '',
-      telegram: '',
-      youtube: '',
-    });
+    try {
+      await axios.put('auth/updatedetails', formData);
+      setFormData((prevFormData) => ({ ...prevFormData, success: true }));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -214,9 +204,8 @@ const AccountPage: React.FC = () => {
             </button>
           </div>
         </div>
-
-      </form>
-    </div>
+      </form >
+    </div >
   );
 };
 
