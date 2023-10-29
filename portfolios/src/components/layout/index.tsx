@@ -145,15 +145,10 @@ function Layout() {
             <NavLink to='/profile' className='account-user'>
               {user?.username}
               <img
-                src={user?.photo && user?.photo !== '' ? user?.photo : './public/image-from-rawpixel-id-3012279-svg.svg'}
+                src={user?.photo && user?.photo !== '' ? `https://ap-portfolio-backend.up.railway.app/upload/${user?.photo}` : './public/image-from-rawpixel-id-3012279-svg.svg'}
                 alt=""
                 className="account-profile"
               />
-              {/* <img
-                src={user?.fields?.length !== undefined && user.fields ? './public/image-from-rawpixel-id-3012279-svg.svg' : `https://ap-portfolio-backend.up.railway.app/api/v1/upload/${user.fields._id}.${user.fields.name?.split(".")[1]}`}
-                alt=""
-                className="account-profile"
-              /> */}
             </NavLink>
           </span>
         </div>
