@@ -13,9 +13,9 @@ const PortfolioCard = ({ portfolio, editBtn, deleteBtn }: SkillsCardProps,) => {
 
   return (
     <div className="card">
-      <div className="user__box">
+      <div className="user__box text-center">
         <h3 className="user__name">Name: {portfolio.name}</h3>
-        <p className="user__text">Url: {portfolio.url}</p>
+        <p className="user__text my-3">Url: <a href={portfolio.url} target='blank'>{portfolio.name}</a></p>
         <p className="user__text">Description: {portfolio.description}</p>
       </div>
       <span className="top"></span>
