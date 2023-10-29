@@ -35,6 +35,9 @@ const AccountPage = () => {
     updateFormData();
   }, [formDatas]);
 
+  console.log(formDatas);
+  
+
   const updateFormData = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -125,7 +128,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Birthday"
               name="birthday"
-              value={formData.birthday}
+              value={formData.birthday === null ? '' : formData.birthday.split('T')[0] }
               onChange={handleChange}
             />
           </div>
