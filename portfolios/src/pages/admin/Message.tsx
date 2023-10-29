@@ -15,6 +15,7 @@ const Messages = () => {
   const pageTotal = 9
 
   const {
+    users,
     messages,
     loading,
     total,
@@ -33,6 +34,7 @@ const Messages = () => {
   } = useMessage();
 
 
+
   useEffect(() => {
     getMessage();
   }, [getMessage]);
@@ -47,10 +49,12 @@ const Messages = () => {
     try {
       setModalLoading(true);
       const values = await form.validateFields();
+      const valueData = { ...values, whom: users?._id };
+
       if (selected === null) {
-        await request.post("messages", values);
+        await request.post("messages", valueData);
       } else {
-        await request.put(`messages/${selected}`, values);
+        await request.put(`messages/${selected}`, valueData);
       }
       getMessage();
       controlModal(false);
@@ -62,6 +66,9 @@ const Messages = () => {
 
   const editBtn = async (id: string) => {
     const { data } = await request.get(`messages/${id}`);
+    console.log(id);
+    console.log(data);
+
     form.setFieldsValue(data);
     controlModal(true);
     setSelected(id);
@@ -130,69 +137,102 @@ const Messages = () => {
         onOk={handleOk}
         onCancel={() => controlModal(false)}
       >
-        <Form
-          name="category"
-          autoComplete="off"
-          labelCol={{
-            span: 24,
-          }}
-          wrapperCol={{
-            span: 24,
-          }}
-          form={form}
-        >
-          <Form.Item<Message>
-            label="Title"
-            name="title"
-            rules={[
-              {
-                required: true,
-                message: "Please fill!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
+        {
+          users?.role === "admin" ? (
+            <Form
+              name="category"
+              autoComplete="off"
+              labelCol={{
+                span: 24,
+              }}
+              wrapperCol={{
+                span: 24,
+              }}
+              form={form}
+            >
 
-          <Form.Item<Message>
-            label="Message"
-            name="message"
-            rules={[
-              {
-                required: true,
-                message: "Please fill!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
+              <Form.Item<Message>
+                label="Answer"
+                name="answer"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please fill!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
 
-          <Form.Item<Message>
-            label="First Name"
-            name="whom"
-            rules={[
-              {
-                required: true,
-                message: "Please fill!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
 
-          <Form.Item<Message>
-            label="Number"
-            name="user"
-            rules={[
-              {
-                required: true,
-                message: "Please fill!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-        </Form>
+            </Form>
+          ) : (
+            <Form
+              name="category"
+              autoComplete="off"
+              labelCol={{
+                span: 24,
+              }}
+              wrapperCol={{
+                span: 24,
+              }}
+              form={form}
+            >
+
+              <Form.Item<Message>
+                label="Title"
+                name="title"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please fill!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item<Message>
+                label="Message"
+                name="message"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please fill!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+
+              {/* <Form.Item<Message>
+                label="who"
+                name="who"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please fill!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item> */}
+
+              <Form.Item<Message>
+                label="Number"
+                name="user"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please fill!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Form>
+          )
+        }
       </Modal>
     </div>
   )

@@ -64,19 +64,18 @@ const useMessage = create<MessageState>()(
             page: number;
             limit: number;
             search: string;
-            user?: string;
-            whom: string;
+            // user?: string;
+            whom?: string;
           }
 
           const params: Params = {
             page: get().page,
             limit: LIMIT,
             search: get().search,
-            whom: ""
           };
 
           if (userId.role !== "admin") {
-            params.user = userId._id;
+            // params.user = userId._id;
             params.whom = userId._id;
           }
 
