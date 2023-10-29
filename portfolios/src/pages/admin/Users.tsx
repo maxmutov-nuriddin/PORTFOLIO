@@ -229,12 +229,6 @@ const Users = () => {
           <Form.Item<User>
             label="Password"
             name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please fill!",
-              },
-            ]}
           >
             <Input />
           </Form.Item>
