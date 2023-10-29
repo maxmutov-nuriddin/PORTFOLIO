@@ -1,3 +1,4 @@
+import useAuth from "../../store/auth";
 import Message from "../../types/message";
 
 interface MessageCardProps {
@@ -9,6 +10,7 @@ interface MessageCardProps {
 import '../skills/skillsCard.scss'
 
 const MessageCard = ({ message, editBtn, deleteBtn }: MessageCardProps,) => {
+  const user = useAuth((state) => state.user);
 
   return (
     <div className="card">
@@ -23,10 +25,14 @@ const MessageCard = ({ message, editBtn, deleteBtn }: MessageCardProps,) => {
       <span className="right"></span>
       <span className="bottom"></span>
       <span className="left"></span>
-      <div className="all__btn">
-        <button className="btn btn-info" onClick={() => editBtn(message._id)}>Edit</button>
-        <button className="btn btn-danger" onClick={() => deleteBtn(message._id)}>Delete</button>
-      </div>
+      {
+        user?.role === 'admin' ? (
+          <div className="all__btn">
+            <button className="btn btn-info" onClick={() => editBtn(message._id)}>Edit</button>
+            <button className="btn btn-danger" onClick={() => deleteBtn(message._id)}>Delete</button>
+          </div>
+        ) : 'null'
+      }
     </div>
   )
 }
