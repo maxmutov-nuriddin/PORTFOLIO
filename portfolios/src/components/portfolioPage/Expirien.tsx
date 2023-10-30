@@ -77,7 +77,7 @@ const Expirien = () => {
                 className="owl-carousel owl-theme skills__portfolio-slider justify-content-center"
               >
                 {
-                  formDatas !== null  ?  (formDatas.map((data: { companyName: string, description: string, workName: string, startDate: string, endDate: string }) => (
+                  formDatas.length > 0  ?  (formDatas.map((data: { companyName: string, description: string, workName: string, startDate: string, endDate: string }) => (
                     < div className="item" key={data.companyName}>
                       <h5 className='fw-bold'><span className='text-warning'>Company Name:</span> {data.companyName}</h5>
                       <p className='m-0'><span className='text-warning'>Description:</span> {data.description}</p>

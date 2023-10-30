@@ -85,7 +85,7 @@ const Skills = () => {
                 className="owl-carousel owl-theme skills__portfolio-slider justify-content-center"
               >
                 {
-                  formDatas !== null  ?  (formDatas.map((data: { name: string, percent: number }) => (
+                  formDatas.length > 0  ?  (formDatas.map((data: { name: string, percent: number }) => (
                     < div className="item" key={data.name}>
                       <Space wrap>
                         <Progress type="dashboard" percent={data.percent} format={percent => (

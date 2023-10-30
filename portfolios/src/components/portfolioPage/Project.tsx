@@ -66,7 +66,7 @@ const Projects = () => {
                   <h2 className="mb-5">Projects</h2>
                   <Row>
                     {
-                      projects !== null ? (projects.map((project: Project) => {
+                      projects.length > 0 ? (projects.map((project: Project) => {
                         return (
                           <ProjectCards
                             key={project._id}
