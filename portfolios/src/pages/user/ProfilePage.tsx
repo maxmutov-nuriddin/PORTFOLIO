@@ -5,6 +5,7 @@ import Projects from "../../components/portfolioPage/Project";
 import Expirien from "../../components/portfolioPage/Expirien";
 import Educations from "../../components/portfolioPage/Educations";
 import Messages from "../../components/portfolioPage/Messages";
+import Footer from "../../components/portfolioPage/Footer";
 
 
 import "../../components/portfolioPage/profile.scss";
@@ -21,6 +22,7 @@ const ProfilePage = () => {
         <Expirien />
         <Educations />
         <Messages />
+        <Footer />
       </div>
     </div>
   );
