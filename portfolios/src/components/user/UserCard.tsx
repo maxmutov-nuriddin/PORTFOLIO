@@ -10,6 +10,7 @@ interface SkillsCardProps {
 
 const UserCard = ({ users, editBtn, deleteBtn }: SkillsCardProps,) => {
 
+  console.log(users);
   
 
 
@@ -21,8 +22,7 @@ const UserCard = ({ users, editBtn, deleteBtn }: SkillsCardProps,) => {
         <div className=' z-2'>
           <h3 className="user__name">Name: {users.firstName} {users.lastName}</h3>
           <p className="user__name">Username: {users.username}</p>
-          <p className="user__name">Username: {users.role}</p>
-          <p className="user__name">Client: {users.client ? 'Not client' : 'Client'}</p>
+          <p className="user__name">User role: {users.role}</p>
         </div>
       </div>
       <span className="top"></span>

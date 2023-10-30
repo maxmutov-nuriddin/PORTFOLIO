@@ -8,6 +8,7 @@ interface FormData {
   email: string;
   facebook: string;
   github: string;
+  role: string;
   info: string;
   instagram: string;
   phoneNumber: string;

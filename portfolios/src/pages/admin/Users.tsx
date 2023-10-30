@@ -222,13 +222,6 @@ const Users = () => {
           >
             <Input />
           </Form.Item>
-          
-          <Form.Item<User>
-            label="Password"
-            name="password"
-          >
-            <Input />
-          </Form.Item>
 
           <Form.Item label="File">
             <input type="file" onChange={handleFileChange} value={mySelectedFile ? mySelectedFile.name : ""} />
