@@ -20,7 +20,7 @@ const Messages = () => {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const response = await request(`messages?user=${userId._id}`);
+        const response = await request(`messages?whom=${userId._id}`);
         setFormDatas(response.data.data)
         setLoading(false)
       } catch (err) {
