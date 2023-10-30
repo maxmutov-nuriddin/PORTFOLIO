@@ -42,16 +42,16 @@ function App() {
             }
           >
             <Route path="/" element={<GlobalPage />} />
-            <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/education" element={<Education />} />
             <Route path="/experiens" element={<Experiens />} />
             <Route path="/skills" element={<Skills />} />
+            <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/users" element={<Users />} />
             <Route path="/message" element={<Messages />} />
-            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/account" element={<AccountPge />} />
             <Route path="/setting" element={<SettingPage />} />
           </Route>
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<NoutFound />} />
         </Routes>
