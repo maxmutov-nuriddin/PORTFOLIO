@@ -25,11 +25,11 @@ const NavBar = () => {
 
   return (
     <>
-      <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
+      <Navbar expand="md" className={scrolled ? "scrolled mx-3" : "mx-3"}>
         <Navbar.Brand className=" fw-bolder fs-1 text-light" href="/">
           PORTFOLIO
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav">
+        <Navbar.Toggle className="me-5" aria-controls="basic-navbar-nav">
           <span className="navbar-toggler-icon"></span>
         </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
@@ -38,9 +38,10 @@ const NavBar = () => {
             <Nav.Link href="#home" className={activeLink === 'home' ? 'navbar-link text-info ' : 'navbar-link text-light '} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
             <Nav.Link href="#skills" className={activeLink === 'skills' ? 'navbar-link text-info ' : 'navbar-link text-light '} onClick={() => onUpdateActiveLink('skills')}>Skills</Nav.Link>
             <Nav.Link href="#projects" className={activeLink === 'projects' ? 'navbar-link text-info ' : 'navbar-link text-light '} onClick={() => onUpdateActiveLink('projects')}>Projects</Nav.Link>
+            <Nav.Link href="#experiences" className={activeLink === 'experiences' ? 'navbar-link text-info ' : 'navbar-link text-light '} onClick={() => onUpdateActiveLink('experiences')}>Experiences</Nav.Link>
           </Nav>
           <span className="navbar-text">
-            <div className="social-icon">
+            <div className="social-icon icon-flex">
               <a className="social-icon-link" target="_blank" href="https://instagram.com/mv.nuriddin?igshid=OGQ5ZDc2ODk2ZA==">
                 <i className="bi fs-3 m-0 text-warning bi-instagram"></i>
               </a>

@@ -3,12 +3,10 @@ import { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import request from '../../server';
 
-import { Progress, Space } from 'antd';
-
 import 'react-multi-carousel/lib/styles.css';
 import '../../components/portfolioPage/profile.scss'
 
-const Skills = () => {
+const Educations = () => {
   const userId = localStorage.getItem("PORTFOLIO_USER")
     ? JSON.parse(localStorage.getItem("PORTFOLIO_USER") || "")
     : null;
@@ -21,7 +19,7 @@ const Skills = () => {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const response = await request(`skills?user=${userId._id}`);
+        const response = await request(`education?user=${userId._id}`);
         setFormDatas(response.data.data)
         setLoading(false)
       } catch (err) {
@@ -44,11 +42,11 @@ const Skills = () => {
       items: 3
     },
     tablet: {
-      breakpoint: { max: 1024, min: 500 },
+      breakpoint: { max: 1024, min: 464 },
       items: 2
     },
     mobile: {
-      breakpoint: { max: 500, min: 0 },
+      breakpoint: { max: 464, min: 0 },
       items: 1
     }
   };
@@ -68,32 +66,25 @@ const Skills = () => {
   }
 
   return (
-    <section className="skills__portfolio" id="skills">
+    <section className="skills__portfolio my-5" id="experiences">
       <div className="containers">
         <div className="row">
           <div className="col">
             <div className="skills__portfolio-bx wow zoomIn">
-              <h2>Skills</h2>
-              <p>
-                I have a lot of skills, and these skills
-                <br />
-                👇👇👇👇
-              </p>
+              <h2 className='mb-5'>Education</h2>
               <Carousel
                 responsive={responsive}
                 infinite={true}
                 className="owl-carousel owl-theme skills__portfolio-slider justify-content-center"
               >
                 {
-                  formDatas !== null  ?  (formDatas.map((data: { name: string, percent: number }) => (
-                    < div className="item" key={data.name}>
-                      <Space wrap>
-                        <Progress type="dashboard" percent={data.percent} format={percent => (
-                          <span style={{ color: '#fff' }}>{percent}%</span>
-                        )}
-                        />
-                      </Space>
-                      <h5 className='mt-3 fw-bold'>{data.name}</h5>
+                  formDatas !== null ? (formDatas.map((data: { _id: number; companyName: string, description: string, workName: string, startDate: string, endDate: string }) => (
+                    < div className="item" key={data._id}>
+                      <h5 className='fw-bold'><span className='text-warning'>Company Name:</span> {data.companyName}</h5>
+                      <p className='m-0'><span className='text-warning'>Description:</span> {data.description}</p>
+                      <p className='m-0'><span className='text-warning'>Work Name:</span> {data.workName}</p>
+                      <p className='m-0'><span className='text-warning'>Start Date:</span> {data?.startDate.split('T')[0]}</p>
+                      <p className='m-0'><span className='text-warning'>End Date:</span> {data?.endDate.split('T')[0]}</p>
                     </div>
                   ))) : (<div className="fs-3 text-center mt-5">Card not found</div>)
                 }
@@ -106,4 +97,4 @@ const Skills = () => {
   )
 }
 
-export default Skills
+export default Educations
