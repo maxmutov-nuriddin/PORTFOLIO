@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import './login.scss'
 
 const LoginPage = () => {
+  const [pass, setPass] = useState('')
   const login = useAuth((state) => state.login);
   const register = useAuth((state) => state.register);
 
@@ -35,20 +36,31 @@ const LoginPage = () => {
     });
   };
 
+  
+
   const singUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const user: SingUp = {
-      firstName: e.currentTarget.firstName.value,
-      lastName: e.currentTarget.lastName.value,
-      username: e.currentTarget.username.value,
-      password: e.currentTarget.password.value,
-    };
-    register(user, navigate);
-    toast.success('You have successfully registered!', {
-      position: toast.POSITION.TOP_RIGHT,
-      autoClose: 1500,
-      hideProgressBar: true,
-    });
+    if (e.currentTarget.password.value === e.currentTarget.repeatPassword.value) {
+      setPass(e.currentTarget.password.value);
+      const user: SingUp = {
+        firstName: e.currentTarget.firstName.value,
+        lastName: e.currentTarget.lastName.value,
+        username: e.currentTarget.username.value,
+        password: pass,
+      };
+      register(user, navigate);
+      toast.success('You have successfully registered!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 900,
+        hideProgressBar: true,
+      });
+    } else {
+      toast.error('Passwords do not match!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 900,
+        hideProgressBar: true,
+      });
+    }
   };
 
   return (
@@ -63,6 +75,7 @@ const LoginPage = () => {
               <input className="inputs" type="text" name="lastName" placeholder="Last Name" required />
               <input className="inputs" type="text" name="username" placeholder="User name" required />
               <input className="inputs" type={showPassword ? 'password' : 'text'} name="password" placeholder="Password" required />
+              <input className="inputs" type={showPassword ? 'password' : 'text'} name="repeatPassword" placeholder="Repeat the password" required />
               <button className='password__show password__show-register' type="button" onClick={togglePasswordVisibility}>
                 {!showPassword ? (<i className="bi bi-eye"></i>) : (<i className="bi bi-eye-slash"></i>)}
               </button>
