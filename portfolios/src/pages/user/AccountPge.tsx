@@ -76,7 +76,6 @@ const AccountPage = () => {
 
       await getAccount();
 
-
       setFormData((prevFormData) => ({ ...prevFormData, success: true }));
       toast.success('Changed', {
         position: toast.POSITION.TOP_RIGHT,
