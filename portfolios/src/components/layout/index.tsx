@@ -94,9 +94,6 @@ function Layout() {
     );
   };
 
-  console.log(user);
-  
-
   return (
     <div className="container">
       <div className={`left-side ${leftSide ? 'active' : ''}`}>
