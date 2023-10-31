@@ -25,8 +25,8 @@ const LoginPage = () => {
   const logIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const user: Login = {
-      username: e.currentTarget.username.value,
-      password: e.currentTarget.password.value,
+      username: e.currentTarget.username.value.trim(),
+      password: e.currentTarget.password.value.trim(),
     };
     login(user, navigate);
     toast.success('You are logged in successfully!', {
@@ -40,12 +40,12 @@ const LoginPage = () => {
 
   const singUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (e.currentTarget.password.value === e.currentTarget.repeatPassword.value) {
-      setPass(e.currentTarget.password.value);
+    if (e.currentTarget.password.value.trim() === e.currentTarget.repeatPassword.value.trim()) {
+      setPass(e.currentTarget.password.value.trim());
       const user: SingUp = {
         firstName: e.currentTarget.firstName.value,
         lastName: e.currentTarget.lastName.value,
-        username: e.currentTarget.username.value,
+        username: e.currentTarget.username.value.trim(),
         password: pass,
       };
       register(user, navigate);
