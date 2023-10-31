@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { TOKEN } from '../../constants';
-import useAuth from '../../store/auth';
 
 import { toast } from 'react-toastify';
 
@@ -12,9 +12,10 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import './layout.scss'
 import useMessage from '../../store/message';
+import request from '../../server';
 
 function Layout() {
-  const user = useAuth((state) => state.user);
+  const [user, setFormDatas] = useState<any>(null);
   const [leftSide, setLeftSide] = useState(false);
   const [rightSide, setRightSide] = useState(false);
   const [messageDots, setMessageDots] = useState(false);
@@ -23,7 +24,18 @@ function Layout() {
 
   const navigate = useNavigate();
 
-  // console.log(user);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await request("auth/me");
+        setFormDatas(response.data)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
+  }, []);
 
 
   useEffect(() => {
@@ -82,6 +94,8 @@ function Layout() {
     );
   };
 
+  console.log(user);
+  
 
   return (
     <div className="container">
