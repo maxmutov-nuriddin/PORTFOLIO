@@ -241,7 +241,19 @@ span.navbar-text {
 
 @media only screen and (max-width: 470px) {
   .animate__animated-img {
-    height: 200px;
+    height: 370px;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .animate__animated-img {
+    height: 320px;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .animate__animated-img {
+    height: 260px;
   }
 }
 
