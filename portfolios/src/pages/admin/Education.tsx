@@ -9,6 +9,7 @@ import Educations from "../../types/education";
 import EducationCard from "../../components/education/EducationCard";
 
 import { SearchContexts } from "../../context/Search";
+import { toast } from "react-toastify";
 
 const Education = () => {
   const { searchContext } = useContext(SearchContexts)
@@ -57,6 +58,11 @@ const Education = () => {
       getEducation();
       controlModal(false);
       form.resetFields();
+      toast.success('Successfully!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+        hideProgressBar: true,
+      });
     } finally {
       setModalLoading(false);
     }
@@ -72,6 +78,11 @@ const Education = () => {
   const deleteBtn = async (id: string) => {
     await request.delete(`education/${id}`);
     getEducation();
+    toast.success('Successfully!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
   }
 
   if (loading) {
@@ -124,10 +135,10 @@ const Education = () => {
       )}
 
       <Modal
-        title="Category data"
+        title="Education data"
         maskClosable={false}
         confirmLoading={modalLoading}
-        okText={selected === null ? "Add skill" : "Save skill"}
+        okText={selected === null ? "Add education" : "Save education"}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={() => controlModal(false)}

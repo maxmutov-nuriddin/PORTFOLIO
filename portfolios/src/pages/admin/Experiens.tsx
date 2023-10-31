@@ -9,6 +9,7 @@ import useExpiriens from "../../store/expiriens";
 
 import { SearchContexts } from "../../context/Search";
 import ExpiriensCard from "../../components/expiriens/ExpiriensCard";
+import { toast } from "react-toastify";
 
 const Skills = () => {
   const { searchContext } = useContext(SearchContexts)
@@ -56,6 +57,11 @@ const Skills = () => {
       getExpiriens();
       controlModal(false);
       form.resetFields();
+      toast.success('Successfully!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+        hideProgressBar: true,
+      });
     } finally {
       setModalLoading(false);
     }
@@ -71,6 +77,11 @@ const Skills = () => {
   const deleteBtn = async (id: string) => {
     await request.delete(`experiences/${id}`);
     getExpiriens();
+    toast.success('Successfully!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
   }
 
   if (loading) {
@@ -99,7 +110,7 @@ const Skills = () => {
 
       <div className="user__inner">
         {
-          expiriens.length > 0 ?  (expiriens.map((expiriens) => <ExpiriensCard key={expiriens._id} editBtn={editBtn} deleteBtn={deleteBtn} expiriens={expiriens} />)) : (<div>Card not found</div>)
+          expiriens.length > 0 ? (expiriens.map((expiriens) => <ExpiriensCard key={expiriens._id} editBtn={editBtn} deleteBtn={deleteBtn} expiriens={expiriens} />)) : (<div>Card not found</div>)
         }
       </div>
       {totalPages > 1 && (
@@ -123,10 +134,10 @@ const Skills = () => {
       )}
 
       <Modal
-        title="Category data"
+        title="Expiriens data"
         maskClosable={false}
         confirmLoading={modalLoading}
-        okText={selected === null ? "Add skill" : "Save skill"}
+        okText={selected === null ? "Add expiriens" : "Save expiriens"}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={() => controlModal(false)}

@@ -8,6 +8,7 @@ import { SearchContexts } from "../../context/Search";
 import MessageCard from "../../components/message/MessageCard";
 import Message from "../../types/message";
 import useMessage from "../../store/message";
+import { toast } from "react-toastify";
 
 const Messages = () => {
   const { searchContext } = useContext(SearchContexts)
@@ -59,6 +60,11 @@ const Messages = () => {
       getMessage();
       controlModal(false);
       form.resetFields();
+      toast.success('Successfully!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+        hideProgressBar: true,
+      });
     } finally {
       setModalLoading(false);
     }
@@ -77,6 +83,11 @@ const Messages = () => {
   const deleteBtn = async (id: string) => {
     await request.delete(`messages/${id}`);
     getMessage();
+    toast.success('Successfully!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
   }
 
   if (loading) {
@@ -133,10 +144,10 @@ const Messages = () => {
       )}
 
       <Modal
-        title="Category data"
+        title="Message data"
         maskClosable={false}
         confirmLoading={modalLoading}
-        okText={selected === null ? "Add skill" : "Save skill"}
+        okText={selected === null ? "Add message" : "Save message"}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={() => controlModal(false)}

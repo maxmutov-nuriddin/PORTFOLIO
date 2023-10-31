@@ -8,6 +8,7 @@ import Skill from "../../types/skill";
 import useSkill from "../../store/skill";
 import SkillsCadr from "../../components/skills/SkillsCadr";
 import { SearchContexts } from "../../context/Search";
+import { toast } from "react-toastify";
 
 const Skills = () => {
   const { searchContext } = useContext(SearchContexts)
@@ -56,6 +57,11 @@ const Skills = () => {
       getSkills();
       controlModal(false);
       form.resetFields();
+      toast.success('Successfully!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+        hideProgressBar: true,
+      });
     } finally {
       setModalLoading(false);
     }
@@ -71,6 +77,11 @@ const Skills = () => {
   const deleteBtn = async (id: string) => {
     await request.delete(`skills/${id}`);
     getSkills();
+    toast.success('Successfully!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
   }
 
   if (loading) {
@@ -99,7 +110,7 @@ const Skills = () => {
 
       <div className="user__inner">
         {
-          skills.length > 0 ?  (skills.map((skill) => <SkillsCadr key={skill._id} editBtn={editBtn} deleteBtn={deleteBtn} skills={skill} />)) : (<div>Card not found</div>)
+          skills.length > 0 ? (skills.map((skill) => <SkillsCadr key={skill._id} editBtn={editBtn} deleteBtn={deleteBtn} skills={skill} />)) : (<div>Card not found</div>)
         }
       </div>
       {totalPages > 1 && (

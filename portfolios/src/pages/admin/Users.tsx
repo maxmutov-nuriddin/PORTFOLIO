@@ -9,6 +9,7 @@ import User from "../../types/user";
 import useUsers from "../../store/user";
 
 import UserCard from "../../components/user/UserCard";
+import { toast } from "react-toastify";
 
 const Users = () => {
   const { searchContext } = useContext(SearchContexts);
@@ -82,6 +83,11 @@ const Users = () => {
       controlModal(false);
       form.resetFields();
       setSelectedFile(null);
+      toast.success('Successfully!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+        hideProgressBar: true,
+      });
     } finally {
       setModalLoading(false);
     }
@@ -98,6 +104,11 @@ const Users = () => {
   const deleteBtn = async (id: string) => {
     await request.delete(`users/${id}`);
     getUser();
+    toast.success('Successfully!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
   };
 
   if (loading) {
@@ -155,10 +166,10 @@ const Users = () => {
         </div>
       )}
       <Modal
-        title="Category data"
+        title="User data"
         maskClosable={false}
         confirmLoading={modalLoading}
-        okText={selected === null ? "Add skill" : "Save skill"}
+        okText={selected === null ? "Add user" : "Save user"}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={() => controlModal(false)}

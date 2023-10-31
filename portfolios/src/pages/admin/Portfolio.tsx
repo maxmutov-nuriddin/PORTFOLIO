@@ -5,6 +5,7 @@ import Portfolio from "../../types/portfolio";
 import { SearchContexts } from "../../context/Search";
 import usePortfolio from "../../store/portfolio";
 import PortfolioCard from "../../components/portfolioCard/PortfolioCard";
+import { toast } from "react-toastify";
 
 const Portfolios = () => {
   const { searchContext } = useContext(SearchContexts);
@@ -60,7 +61,7 @@ const Portfolios = () => {
         values.photo = response.data;
 
         console.log(values);
-        
+
 
         if (selected === null) {
           await request.post("portfolios", values);
@@ -76,6 +77,11 @@ const Portfolios = () => {
       controlModal(false);
       form.resetFields();
       setSelectedFile(null);
+      toast.success('Successfully!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+        hideProgressBar: true,
+      });
     } finally {
       setModalLoading(false);
     }
@@ -92,6 +98,11 @@ const Portfolios = () => {
   const deleteBtn = async (id: string) => {
     await request.delete(`portfolios/${id}`);
     getPortfolio();
+    toast.success('Successfully!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
   };
 
   if (loading) {
@@ -149,10 +160,10 @@ const Portfolios = () => {
         </div>
       )}
       <Modal
-        title="Category data"
+        title="Portfolio data"
         maskClosable={false}
         confirmLoading={modalLoading}
-        okText={selected === null ? "Add skill" : "Save skill"}
+        okText={selected === null ? "Add portfolio" : "Save portfolio"}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={() => controlModal(false)}
