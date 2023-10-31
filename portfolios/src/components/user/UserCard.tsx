@@ -20,7 +20,7 @@ const UserCard = ({ users, editBtn, deleteBtn }: SkillsCardProps,) => {
           src={
             users.photo.name
               ? `https://ap-portfolio-backend.up.railway.app/upload/${users.photo._id}.${users.photo.name.split(".")[1]}`
-              : "../../../public/Gold Luxury Business Logo.png"
+              : "./public/Gold Luxury Business Logo.png"
           }
           alt=""
         />
