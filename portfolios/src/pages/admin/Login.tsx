@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../store/auth";
+import { Modal } from "react-bootstrap";
 
 import Login from "../../types/login";
 import SingUp from "../../types/singup";
@@ -16,6 +17,18 @@ const LoginPage = () => {
 
   const [showPassword, setShowPassword] = useState(true);
 
+
+  const [smShow, setSmShow] = useState(false);
+  const username = "nuriddin_jone";
+  const password = "12345";
+  const usernameStyle = { color: 'red' };
+  const passwordStyle = { color: 'red' };
+  const nameStyle = { color: 'black' };
+
+
+  useEffect(() => {
+    setSmShow(true);
+  }, []);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -36,7 +49,7 @@ const LoginPage = () => {
     });
   };
 
-  
+
 
   const singUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -63,8 +76,25 @@ const LoginPage = () => {
     }
   };
 
+
   return (
     <div>
+      <Modal
+        size="sm"
+        show={smShow}
+        onHide={() => setSmShow(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-sm">
+            LOGIN: 👇
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div style={nameStyle}>User Name: <span style={usernameStyle}> {username}</span></div>
+          <div style={nameStyle}>Password: <span style={passwordStyle}>{password}</span></div>
+        </Modal.Body>
+      </Modal>
       <div className="conic">
         <div className="mains">
           <input className="inputs" type="checkbox" id="chk" aria-hidden="true" />
