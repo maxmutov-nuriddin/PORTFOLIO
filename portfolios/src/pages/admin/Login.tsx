@@ -44,7 +44,11 @@ const LoginPage = () => {
       password: e.currentTarget.password.value,
     };
     register(user, navigate);
-
+    toast.success('You have successfully registered!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 1500,
+      hideProgressBar: true,
+    });
   };
 
   return (
