@@ -23,10 +23,6 @@ const Banner = () => {
     fetchData();
   }, []);
 
-  console.log(formDatas);
-  
-
-
   if (loading) {
     return (
       <div className="loading">
@@ -39,6 +35,9 @@ const Banner = () => {
       </div>
     );
   }
+
+  console.log(formDatas.birthday);
+  
 
   return (
     <section className="banner" id="home">
@@ -53,7 +52,7 @@ const Banner = () => {
               </h1>
               <p>
                 My name is {formDatas?.firstName} {formDatas?.lastName}. I was born on{" "}
-                {formDatas?.birthday === null ? "" : formDatas?.birthday.split("T")[0]}. Currently, I work as an{" "}
+                {formDatas?.birthday === undefined ? "" : formDatas?.birthday.split("T")[0]}. Currently, I work as an{" "}
                 {formDatas?.role}. I love my job, and I like to say: {formDatas?.info}. It always brings a surprise to
                 people's faces!
               </p>

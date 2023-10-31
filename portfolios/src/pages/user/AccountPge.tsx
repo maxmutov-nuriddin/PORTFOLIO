@@ -95,7 +95,7 @@ const AccountPage = () => {
         <div className="loading-bar"></div>
         <div className="loading-bar"></div>
         <div className="loading-bar"></div>
-        <div className="loading-bar"></div>
+        <div className="loading-bar"></div>ё
       </div>
     </div>
   }
