@@ -23,6 +23,9 @@ const Banner = () => {
     fetchData();
   }, []);
 
+  console.log(formDatas);
+  
+
 
   if (loading) {
     return (

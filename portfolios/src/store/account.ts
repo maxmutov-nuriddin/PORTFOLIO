@@ -17,7 +17,6 @@ const useAccount = create<AccountState>()(
 
   devtools(
     immer((set) => ({
-
       formDatas: [],
       loading: false,
       getAccount: async () => {

@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import './accountPage.scss';
 import request from '../../server';
 import useAccount from '../../store/account';
-
+import { toast } from 'react-toastify';
 
 const AccountPage = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
   const {
     formDatas,
     loading,
     getAccount,
   } = useAccount();
 
-  const [formData, setFormData] = useState({
+  const [formDate, setFormData] = useState({
     firstName: '',
     lastName: '',
     username: '',
@@ -25,6 +27,7 @@ const AccountPage = () => {
     phoneNumber: '',
     telegram: '',
     youtube: '',
+    photo: '',
   });
 
   useEffect(() => {
@@ -35,7 +38,6 @@ const AccountPage = () => {
     updateFormData();
   }, [formDatas]);
 
-
   const updateFormData = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -43,6 +45,11 @@ const AccountPage = () => {
     }));
   };
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setSelectedFile(event.target.files[0]);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -52,10 +59,34 @@ const AccountPage = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await request.put('auth/updatedetails', formData);
+      const formData = new FormData();
+
+      if (selectedFile) {
+        formData.append('file', selectedFile);
+      }
+
+      const response = await request.post('auth/upload', formData);
+
+
+      if (response.data) {
+        setFormData((prevFormData) => ({ ...prevFormData, photo: response.data }));
+      }
+
+      await request.put('auth/updatedetails', formDate);
+
+      await getAccount();
+
+
       setFormData((prevFormData) => ({ ...prevFormData, success: true }));
+      toast.success('Changed', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 700,
+        hideProgressBar: true,
+        onClose: () => location.reload(),
+      });
     } catch (error) {
       console.log(error);
+      toast.error('Error changing')
     }
   };
 
@@ -70,6 +101,7 @@ const AccountPage = () => {
     </div>
   }
 
+
   return (
     <div className='form-bg'>
       <h3 className='text-center mb-3 fw-bolder fs-1'>Account</h3>
@@ -82,7 +114,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="First name"
               name="firstName"
-              value={formData.firstName}
+              value={formDate.firstName}
               onChange={handleChange}
             />
           </div>
@@ -93,7 +125,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Last name"
               name="lastName"
-              value={formData.lastName}
+              value={formDate.lastName}
               onChange={handleChange}
             />
           </div>
@@ -104,7 +136,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Username"
               name="username"
-              value={formData.username}
+              value={formDate.username}
               onChange={handleChange}
             />
           </div>
@@ -115,7 +147,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Address"
               name="address"
-              value={formData.address}
+              value={formDate.address}
               onChange={handleChange}
             />
           </div>
@@ -126,7 +158,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Birthday"
               name="birthday"
-              value={formData.birthday === null ? '' : formData.birthday.split('T')[0] }
+              value={formDate.birthday === null ? '' : formDate.birthday}
               onChange={handleChange}
             />
           </div>
@@ -137,7 +169,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Enter email"
               name="email"
-              value={formData.email}
+              value={formDate.email}
               onChange={handleChange}
             />
           </div>
@@ -148,7 +180,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Enter Facebook URL"
               name="facebook"
-              value={formData.facebook}
+              value={formDate.facebook}
               onChange={handleChange}
             />
           </div>
@@ -161,7 +193,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Enter GitHub URL"
               name="github"
-              value={formData.github}
+              value={formDate.github}
               onChange={handleChange}
             />
           </div>
@@ -171,7 +203,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Enter info"
               name="info"
-              value={formData.info}
+              value={formDate.info}
               onChange={handleChange}
             ></textarea>
           </div>
@@ -182,7 +214,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Enter Instagram URL"
               name="instagram"
-              value={formData.instagram}
+              value={formDate.instagram}
               onChange={handleChange}
             />
           </div>
@@ -193,7 +225,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Enter phone number"
               name="phoneNumber"
-              value={formData.phoneNumber}
+              value={formDate.phoneNumber}
               onChange={handleChange}
             />
           </div>
@@ -204,7 +236,7 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Enter Telegram URL"
               name="telegram"
-              value={formData.telegram}
+              value={formDate.telegram}
               onChange={handleChange}
             />
           </div>
@@ -215,10 +247,19 @@ const AccountPage = () => {
               className="form-control"
               placeholder="Enter YouTube URL"
               name="youtube"
-              value={formData.youtube}
+              value={formDate.youtube}
               onChange={handleChange}
             />
           </div>
+          <div className="mb-3">
+            <label>Foto</label>
+            <input
+              type="file"
+              onChange={handleFileChange}
+
+            />
+          </div>
+
           <div className="d-grid mt-3">
             <button type="submit" className="btn btn-primary">
               Sign Up

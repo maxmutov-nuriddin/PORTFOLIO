@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import request from "../../server/index";
 
-import {  Form, Input, Modal } from "antd";
+import { Form, Input, Modal } from "antd";
 import { SearchContexts } from "../../context/Search";
 
 
@@ -64,6 +64,9 @@ const Users = () => {
 
         const response = await request.post("/upload", formData);
         values.photo = response.data;
+
+        console.log(values);
+
 
         if (selected === null) {
           await request.post("users", values);
@@ -219,6 +222,13 @@ const Users = () => {
                 message: "Please fill!",
               },
             ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item<User>
+            label="Password"
+            name="password"
           >
             <Input />
           </Form.Item>

@@ -10,15 +10,20 @@ interface SkillsCardProps {
 
 const UserCard = ({ users, editBtn, deleteBtn }: SkillsCardProps,) => {
 
-  console.log(users);
-  
-
 
 
   return (
     <div className="card">
       <div className="user__box text-center">
-        <img className='portfolio_img' src={`https://ap-portfolio-backend.up.railway.app/upload/${users.photo}`} alt="" />
+        <img
+          className="portfolio_img"
+          src={
+            users.photo.name
+              ? `https://ap-portfolio-backend.up.railway.app/upload/${users.photo._id}.${users.photo.name.split(".")[1]}`
+              : "../../../public/Gold Luxury Business Logo.png"
+          }
+          alt=""
+        />
         <div className=' z-2'>
           <h3 className="user__name">Name: {users.firstName} {users.lastName}</h3>
           <p className="user__name">Username: {users.username}</p>

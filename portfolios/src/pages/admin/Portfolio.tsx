@@ -38,14 +38,12 @@ const Portfolios = () => {
 
   const [form] = Form.useForm();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [mySelectedFile, setMySelectedFile] = useState<File | null>(null);
 
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setSelectedFile(event.target.files[0]);
     }
-    setMySelectedFile(selectedFile);
   };
 
   const handleOk = async () => {
@@ -60,6 +58,9 @@ const Portfolios = () => {
 
         const response = await request.post("/upload", formData);
         values.photo = response.data;
+
+        console.log(values);
+        
 
         if (selected === null) {
           await request.post("portfolios", values);
@@ -207,7 +208,7 @@ const Portfolios = () => {
           </Form.Item>
 
           <Form.Item label="File">
-            <input type="file" onChange={handleFileChange} value={mySelectedFile ? mySelectedFile.name : ""} />
+            <input type="file" onChange={handleFileChange} />
           </Form.Item>
         </Form>
       </Modal>

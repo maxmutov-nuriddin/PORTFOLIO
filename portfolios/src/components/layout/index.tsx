@@ -150,7 +150,7 @@ function Layout() {
             <NavLink to='/profile' className='account-user'>
               {user?.username}
               <img
-                src={user?.photo && user?.photo !== '' ? `https://ap-portfolio-backend.up.railway.app/upload/${user?.photo}` : './public/image-from-rawpixel-id-3012279-svg.svg'}
+                src={`https://ap-portfolio-backend.up.railway.app/upload/${user?.photo}`}
                 alt=""
                 className="account-profile"
               />
