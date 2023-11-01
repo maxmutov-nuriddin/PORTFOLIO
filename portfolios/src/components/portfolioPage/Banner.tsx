@@ -36,9 +36,6 @@ const Banner = () => {
     );
   }
 
-  console.log(formDatas.birthday);
-  
-
   return (
     <section className="banner" id="home">
       <Row className="aligh-items-center">
