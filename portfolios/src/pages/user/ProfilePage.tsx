@@ -9,6 +9,7 @@ import Footer from "../../components/portfolioPage/Footer";
 
 import "../../components/portfolioPage/profile.scss";
 import SkillSection from "../../components/portfolioPage/SkillSection";
+import { FloatButton } from "antd";
 
 const ProfilePage = () => {
 
@@ -19,10 +20,11 @@ const ProfilePage = () => {
         <Banner />
         <SkillSection />
         <Projects />
-        <Expirien />
         <Educations />
         <Messages />
+        <Expirien />
         <Footer />
+        <FloatButton.BackTop />
       </div>
     </div>
   );

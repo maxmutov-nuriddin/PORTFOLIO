@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+import { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import request from '../../server';
 
@@ -14,7 +15,6 @@ const SkillSection = () => {
     : null;
 
   const [loading, setLoading] = useState(true);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [formDatas, setFormDatas] = useState<any>(null);
 
   useEffect(() => {

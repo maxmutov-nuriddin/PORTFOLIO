@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import request from '../../server';
 
@@ -12,7 +13,6 @@ const Educations = () => {
     : null;
 
   const [loading, setLoading] = useState(true);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [formDatas, setFormDatas] = useState<any>(null);
 
   useEffect(() => {
@@ -31,25 +31,6 @@ const Educations = () => {
     fetchData();
   }, []);
 
-
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
-  };
 
 
   if (loading) {
@@ -73,9 +54,57 @@ const Educations = () => {
             <div className="skills__portfolio-bx wow zoomIn">
               <h2 className='mb-5'>Education</h2>
               <Carousel
-                responsive={responsive}
-                infinite={true}
-                className="owl-carousel owl-theme skills__portfolio-slider justify-content-center"
+                additionalTransfrom={0}
+                arrows={false}
+                autoPlaySpeed={3000}
+                centerMode={false}
+                className=""
+                containerClass="container-padding-bottom"
+                dotListClass=""
+                draggable
+                focusOnSelect
+                infinite
+                itemClass=""
+                keyBoardControl
+                minimumTouchDrag={80}
+                pauseOnHover
+                renderArrowsWhenDisabled={false}
+                renderButtonGroupOutside={false}
+                renderDotsOutside={false}
+                responsive={{
+                  desktop: {
+                    breakpoint: {
+                      max: 3000,
+                      min: 1024
+                    },
+                    items: formDatas.length < 3 ? 2 : 3,
+                    partialVisibilityGutter: 40
+                  },
+                  mobile: {
+                    breakpoint: {
+                      max: 464,
+                      min: 0
+                    },
+                    items: 1,
+                    partialVisibilityGutter: 30
+                  },
+                  tablet: {
+                    breakpoint: {
+                      max: 1024,
+                      min: 464
+                    },
+                    items: 2,
+                    partialVisibilityGutter: 30
+                  }
+                }}
+                rewind={false}
+                rewindWithAnimation={false}
+                rtl={false}
+                shouldResetAutoplay
+                showDots
+                sliderClass=""
+                slidesToSlide={1}
+                swipeable
               >
                 {
                   formDatas.length > 0 ? (formDatas.map((data: { _id: number; companyName: string, description: string, workName: string, startDate: string, endDate: string }) => (
