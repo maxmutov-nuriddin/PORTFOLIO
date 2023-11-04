@@ -8,7 +8,7 @@ import { Progress, Space } from 'antd';
 import 'react-multi-carousel/lib/styles.css';
 import '../../components/portfolioPage/profile.scss'
 
-const Skills = () => {
+const SkillSection = () => {
   const userId = localStorage.getItem("PORTFOLIO_USER")
     ? JSON.parse(localStorage.getItem("PORTFOLIO_USER") || "")
     : null;
@@ -32,27 +32,6 @@ const Skills = () => {
 
     fetchData();
   }, []);
-
-
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 500 },
-      items: 2
-    },
-    mobile: {
-      breakpoint: { max: 500, min: 0 },
-      items: 1
-    }
-  };
-
 
   if (loading) {
     return (
@@ -80,12 +59,60 @@ const Skills = () => {
                 👇👇👇👇
               </p>
               <Carousel
-                responsive={responsive}
-                infinite={true}
-                className="owl-carousel owl-theme skills__portfolio-slider justify-content-center"
+                additionalTransfrom={0}
+                arrows={false}
+                autoPlaySpeed={3000}
+                centerMode={false}
+                className=""
+                containerClass="container-padding-bottom"
+                dotListClass=""
+                draggable
+                focusOnSelect
+                infinite
+                itemClass=""
+                keyBoardControl
+                minimumTouchDrag={80}
+                pauseOnHover
+                renderArrowsWhenDisabled={false}
+                renderButtonGroupOutside={false}
+                renderDotsOutside={false}
+                responsive={{
+                  desktop: {
+                    breakpoint: {
+                      max: 3000,
+                      min: 1024
+                    },
+                    items: 3,
+                    partialVisibilityGutter: 40
+                  },
+                  mobile: {
+                    breakpoint: {
+                      max: 464,
+                      min: 0
+                    },
+                    items: 1,
+                    partialVisibilityGutter: 30
+                  },
+                  tablet: {
+                    breakpoint: {
+                      max: 1024,
+                      min: 464
+                    },
+                    items: 2,
+                    partialVisibilityGutter: 30
+                  }
+                }}
+                rewind={false}
+                rewindWithAnimation={false}
+                rtl={false}
+                shouldResetAutoplay
+                showDots
+                sliderClass=""
+                slidesToSlide={1}
+                swipeable
               >
                 {
-                  formDatas.length > 0  ?  (formDatas.map((data: { name: string, percent: number }) => (
+                  formDatas.length > 0 ? (formDatas.map((data: { name: string, percent: number }) => (
                     < div className="item" key={data.name}>
                       <Space wrap>
                         <Progress type="dashboard" percent={data.percent} format={percent => (
@@ -106,4 +133,4 @@ const Skills = () => {
   )
 }
 
-export default Skills
+export default SkillSection

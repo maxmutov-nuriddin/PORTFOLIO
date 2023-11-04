@@ -1,5 +1,4 @@
 import Banner from "../../components/portfolioPage/Banner";
-import Skills from "../../components/portfolioPage/Skills";
 import NavBar from "../../components/portfolioPage/NavBar";
 import Projects from "../../components/portfolioPage/Project";
 import Expirien from "../../components/portfolioPage/Expirien";
@@ -9,6 +8,7 @@ import Footer from "../../components/portfolioPage/Footer";
 
 
 import "../../components/portfolioPage/profile.scss";
+import SkillSection from "../../components/portfolioPage/SkillSection";
 
 const ProfilePage = () => {
 
@@ -17,7 +17,7 @@ const ProfilePage = () => {
       <div className="container__profile">
         <NavBar />
         <Banner />
-        <Skills />
+        <SkillSection />
         <Projects />
         <Expirien />
         <Educations />
