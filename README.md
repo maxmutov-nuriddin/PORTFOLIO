@@ -10,7 +10,7 @@ Personal portfolio website showcasing my projects, skills, and experience as a F
 
 ## 🛠 Tech Stack
 - TypeScript
-- JavaScript
+- React
 - HTML5
 - CSS3
 
